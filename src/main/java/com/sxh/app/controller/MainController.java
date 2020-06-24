@@ -1,6 +1,6 @@
-package com.jfx.app.controller;
+package com.sxh.app.controller;
 
-import com.jfx.app.fx.FxmlView;
+import com.sxh.app.fx.FxmlView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.slf4j.Logger;

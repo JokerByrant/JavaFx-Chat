@@ -1,4 +1,4 @@
-package com.jfx.app.utils;
+package com.sxh.app.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

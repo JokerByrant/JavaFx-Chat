@@ -1,7 +1,7 @@
-package com.jfx.app.controller;
+package com.sxh.app.controller;
 
-import com.jfx.app.fx.Cache;
-import com.jfx.app.fx.FxmlView;
+import com.sxh.app.fx.Cache;
+import com.sxh.app.fx.FxmlView;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;

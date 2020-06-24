@@ -1,7 +1,7 @@
-package com.jfx.app.fx;
+package com.sxh.app.fx;
 
-import com.jfx.app.controller.LoginController;
-import com.jfx.app.controller.MainController;
+import com.sxh.app.controller.LoginController;
+import com.sxh.app.controller.MainController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.slf4j.Logger;

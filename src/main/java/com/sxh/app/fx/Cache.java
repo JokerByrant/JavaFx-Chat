@@ -1,6 +1,6 @@
-package com.jfx.app.fx;
+package com.sxh.app.fx;
 
-import com.jfx.app.pojo.User;
+import com.sxh.app.pojo.User;
 import javafx.stage.Stage;
 
 import java.util.HashMap;

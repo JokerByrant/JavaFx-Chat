@@ -1,4 +1,4 @@
-package com.jfx.app.fx;
+package com.sxh.app.fx;
 
 import javafx.stage.Stage;
 

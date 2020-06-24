@@ -1,7 +1,7 @@
-package com.jfx.app;
+package com.sxh.app;
 
-import com.jfx.app.fx.AbstractFxApplication;
-import com.jfx.app.fx.FxmlView;
+import com.sxh.app.fx.AbstractFxApplication;
+import com.sxh.app.fx.FxmlView;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**

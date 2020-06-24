@@ -1,4 +1,4 @@
-package com.jfx.app.pojo;
+package com.sxh.app.pojo;
 
 /**
  * @author sxh
