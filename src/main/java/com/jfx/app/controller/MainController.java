@@ -1,11 +1,8 @@
 package com.jfx.app.controller;
 
-import com.jfx.app.fx.Cache;
 import com.jfx.app.fx.FxmlView;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,16 +23,15 @@ public class MainController extends BaseController {
     @Override
     public void init() {
         try {
-            super.init(this, FxmlView.MAIN, new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    System.exit(0);
-                }
-            });
+            super.init(this, FxmlView.MAIN);
         } catch (IOException e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
+
+        this.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
     }
     
     @Override
@@ -44,7 +40,7 @@ public class MainController extends BaseController {
     
     @FXML
     private void exit() {
-        Cache.ControllerMap.get("main").close();
-        Cache.ControllerMap.get("login").show();
+        FxmlView.LOGIN.stage().show();
+        FxmlView.MAIN.stage().close();
     }
 }

@@ -2,7 +2,6 @@ package com.jfx.app.controller;
 
 import com.jfx.app.fx.Cache;
 import com.jfx.app.fx.FxmlView;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -22,14 +21,12 @@ public abstract class BaseController extends Stage implements Initializable {
     /**
      * 初始化Controller
      * @param fxmlView
-     * @param handler
      */
-    protected void init(Stage stage, FxmlView fxmlView, EventHandler handler) throws IOException {
+    protected void init(Stage stage, FxmlView fxmlView) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlView.fxml()));
         stage.setTitle(fxmlView.title());
         stage.setScene(new Scene(root));
         Cache.ControllerMap.put(fxmlView.fName(), stage);
-        stage.setOnCloseRequest(handler);
     }
 
     /**

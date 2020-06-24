@@ -2,14 +2,12 @@ package com.jfx.app.controller;
 
 import com.jfx.app.fx.Cache;
 import com.jfx.app.fx.FxmlView;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.WindowEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,16 +34,15 @@ public class LoginController extends BaseController {
     @Override
     public void init() {
         try {
-            super.init(this, FxmlView.LOGIN, new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    System.exit(0);
-                }
-            });
+            super.init(this, FxmlView.LOGIN);
         } catch (IOException e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
+
+        this.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
         
         super.show();
     }
@@ -76,27 +73,33 @@ public class LoginController extends BaseController {
         System.out.println("Send register Request -> username: " + username.getText() + ",  password: " + password.getText());
     }
 
+    /**
+     * 检查登录信息
+     */
     private void checkLoginInfo() {
         if (StringUtils.isBlank(username.getText())) {
             verification.setText("用户名不能为空！");
             return;
         }
-        if (!username.getText().equals("admin")) {
-            verification.setText("用户名有误！");
-            return;
-        }
+//        if (!username.getText().equals("admin")) {
+//            verification.setText("用户名有误！");
+//            return;
+//        }
         if (StringUtils.isBlank(password.getText())) {
             verification.setText("密码不能为空！");
             return;
         }
-        if (!password.getText().equals("123456")) {
-            verification.setText("密码错误！");
-            return;
-        }
+//        if (!password.getText().equals("123456")) {
+//            verification.setText("密码错误！");
+//            return;
+//        }
 
         doLoginSuccess();
     }
-    
+
+    /**
+     * 登录成功
+     */
     private void doLoginSuccess() {
         verification.setText("");
         Cache.currentUser.setName(username.getText());
