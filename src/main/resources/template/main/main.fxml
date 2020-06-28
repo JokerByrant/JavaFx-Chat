@@ -2,21 +2,90 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="872.0" stylesheets="/styles/theme/index.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sxh.app.controller.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500" prefWidth="850" stylesheets="/styles/main.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sxh.app.controller.MainController">
    <children>
-      <Label layoutX="299.0" layoutY="111.0" text="WelCome To CloudFish Chat">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="userInfo" layoutX="412.0" layoutY="165.0" text="">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Button layoutX="409.0" layoutY="209.0" mnemonicParsing="false" onAction="#exit" styleClass="exit_button" text="Exit" />
+      <!-- 控制栏 -->
+      <Pane id="bar" prefHeight="500.0" prefWidth="80.0">
+         <children>
+            <!-- 头像 -->
+            <Button id="bar_avatar" layoutX="13" layoutY="25" mnemonicParsing="false" prefHeight="50" prefWidth="50" />
+
+            <!-- 聊天 -->
+            <Button id="bar_chat" layoutX="23" layoutY="100" mnemonicParsing="false" prefHeight="30" prefWidth="30" />
+
+            <!-- 好友 -->
+            <Button id="bar_friend" layoutX="23" layoutY="155" mnemonicParsing="false" prefHeight="30" prefWidth="30" />
+
+            <!-- 设置 -->
+            <Button id="bar_set" layoutX="28" layoutY="465" mnemonicParsing="false" prefHeight="20" prefWidth="20" />
+         </children>
+      </Pane>
+
+      <!--聊天模块-->
+      <Pane id="chat" layoutX="80.0" prefHeight="500.0" prefWidth="770.0">
+         <!--搜索栏-->
+         <Pane prefHeight="75.0" prefWidth="240.0" styleClass="search">
+            <children>
+               <TextField layoutX="14.0" layoutY="32.0" prefHeight="30.0" prefWidth="170.0" styleClass="searchInput" />
+               <Label layoutX="196.0" layoutY="32.0" prefHeight="30.0" prefWidth="30.0" styleClass="searchAdd" />
+            </children>
+         </Pane>
+
+         <!--聊天用户列表-->
+         <Pane id="chatList" layoutY="76.0" prefHeight="425.0" prefWidth="240.0">
+            <children>
+               <ListView id="friend_list" prefHeight="425.0" prefWidth="240.0" />
+            </children>
+         </Pane>
+
+         <!--缩小关闭按钮组-->
+         <Pane layoutX="240.0" prefHeight="40.0" prefWidth="530.0">
+            <children>
+               <Button id="chat_min" layoutX="446.0" layoutY="4.0" mnemonicParsing="false" prefHeight="32" prefWidth="42" />
+               <Button id="chat_close" layoutX="488.0" layoutY="4.0" mnemonicParsing="false" prefHeight="32" prefWidth="42" />
+            </children>
+         </Pane>
+
+         <!--用户昵称/群名称；消息栏-->
+         <Pane layoutX="240.0" layoutY="40" prefHeight="320.0" prefWidth="530.0">
+            <Pane prefHeight="40.0" prefWidth="530.0">
+               <children>
+                  <Label layoutX="31.0" layoutY="7.0" text="Label" />
+                  <Label layoutX="485.0" layoutY="15.0" text="Label" />
+               </children>
+            </Pane>
+            <Pane layoutY="40" prefHeight="280.0" prefWidth="530.0">
+            </Pane>
+         </Pane>
+         
+         <!--工具栏：表情-->
+         <Pane layoutX="240.0" layoutY="360" prefHeight="40.0" prefWidth="530.0">
+            <children>
+               <Button layoutX="14.0" layoutY="5.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+            </children>
+         </Pane>
+         
+         <!--输入框-->
+         <Pane layoutX="240.0" layoutY="400" prefHeight="75.0" prefWidth="530.0">
+            <children>
+               <TextArea layoutX="-1.0" layoutY="-3.0" prefHeight="75.0" prefWidth="530.0" />
+            </children>
+         </Pane>
+         
+         <!--发送按钮-->
+         <Pane layoutX="240.0" layoutY="475" prefHeight="25.0" prefWidth="530.0">
+            <children>
+               <Label layoutX="474.0" layoutY="3.0" prefHeight="20" prefWidth="42.0" text="发送(S)" />
+            </children>
+         </Pane>
+      </Pane>
+<!--      &lt;!&ndash;好友模块&ndash;&gt;-->
+<!--      <Pane id="group_bar_friend" layoutX="80.0" prefHeight="500.0" prefWidth="770.0" />-->
+
    </children>
 </Pane>

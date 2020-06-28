@@ -77,7 +77,6 @@ public class LoginController extends BaseController {
 
     @FXML
     private void register() {
-        System.out.println("Send register Request -> username: " + username.getText() + ",  password: " + password.getText());
     }
 
     /**
@@ -94,18 +93,6 @@ public class LoginController extends BaseController {
         }
 
         sendLoginRequest(username.getText(), password.getText());
-    }
-
-    /**
-     * 登录成功
-     */
-    private void doLoginSuccess() {
-        verification.setText("");
-        Cache.currentUser.setName(username.getText());
-        Cache.currentUser.setPassword(password.getText());
-        FxmlView.LOGIN.stage().close();
-        FxmlView.MAIN.stage().show();
-        $(FxmlView.MAIN, "userInfo", Label.class).setText(username.getText());
     }
 
     /**
@@ -129,5 +116,17 @@ public class LoginController extends BaseController {
             verification.setText(jsonObject.getString("message"));
             return;
         }
+    }
+
+    /**
+     * 登录成功
+     */
+    private void doLoginSuccess() {
+        verification.setText("");
+        Cache.currentUser.setName(username.getText());
+        Cache.currentUser.setPassword(password.getText());
+        FxmlView.LOGIN.stage().close();
+        FxmlView.MAIN.stage().show();
+//        $(FxmlView.MAIN, "userInfo", Label.class).setText(username.getText());
     }
 }
