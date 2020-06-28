@@ -1,7 +1,10 @@
 package com.sxh.app.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.sxh.app.api.ApiUrl;
 import com.sxh.app.fx.Cache;
 import com.sxh.app.fx.FxmlView;
+import com.sxh.app.utils.HttpUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -11,6 +14,10 @@ import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.net.URL;
@@ -81,20 +88,12 @@ public class LoginController extends BaseController {
             verification.setText("用户名不能为空！");
             return;
         }
-//        if (!username.getText().equals("admin")) {
-//            verification.setText("用户名有误！");
-//            return;
-//        }
         if (StringUtils.isBlank(password.getText())) {
             verification.setText("密码不能为空！");
             return;
         }
-//        if (!password.getText().equals("123456")) {
-//            verification.setText("密码错误！");
-//            return;
-//        }
 
-        doLoginSuccess();
+        sendLoginRequest(username.getText(), password.getText());
     }
 
     /**
@@ -107,5 +106,28 @@ public class LoginController extends BaseController {
         FxmlView.LOGIN.stage().close();
         FxmlView.MAIN.stage().show();
         $(FxmlView.MAIN, "userInfo", Label.class).setText(username.getText());
+    }
+
+    /**
+     * 发送登录请求
+     * @param username
+     * @param password
+     * @return
+     */
+    private void sendLoginRequest(String username, String password) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", username);
+        jsonObject.put("password", password);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_STREAM_JSON);
+        HttpEntity<String> entity = new HttpEntity(jsonObject.toJSONString(), headers);
+        ResponseEntity<String> responseEntity = HttpUtil.doPostForEntity(ApiUrl.LOGIN, entity);
+        jsonObject = JSONObject.parseObject(responseEntity.getBody());
+        if (responseEntity.getHeaders().containsKey("authorization") && jsonObject.getIntValue("code") == 200) {
+            doLoginSuccess();
+        } else {
+            verification.setText(jsonObject.getString("message"));
+            return;
+        }
     }
 }
